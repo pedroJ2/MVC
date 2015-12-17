@@ -28,5 +28,11 @@ namespace IntercambioProyect.Controllers
 
             return View();
         }
+        public ActionResult Contactt()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }
