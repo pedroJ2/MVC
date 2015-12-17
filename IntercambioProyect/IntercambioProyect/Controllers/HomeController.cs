@@ -21,10 +21,9 @@ namespace IntercambioProyect.Controllers
 
             return View();
         }
-        public ActionResult yea()
-        {
-            ViewBag.Message = "Your app description page.";
 
+<<<<<<< HEAD
+=======
             return View();
         }
         public ActionResult HolaSoyRamiro()
@@ -33,6 +32,7 @@ namespace IntercambioProyect.Controllers
 
             return View();
         }
+>>>>>>> 262fdc2594c6d614403e7ebdb0eb8ade23496c4a
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
