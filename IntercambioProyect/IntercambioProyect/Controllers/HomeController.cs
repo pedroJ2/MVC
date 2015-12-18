@@ -22,20 +22,23 @@ namespace IntercambioProyect.Controllers
             return View();
         }
 
-<<<<<<< HEAD
-=======
-            return View();
-        }
         public ActionResult HolaSoyRamiro()
         {
             ViewBag.Message = "Your app description page.";
 
             return View();
         }
->>>>>>> 262fdc2594c6d614403e7ebdb0eb8ade23496c4a
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult Hola_Minombre_es_PANFILOMENO()
+        {
+            ViewBag.Message = "Hola_Minombre_es_PANFILOMENO.";
 
             return View();
         }
