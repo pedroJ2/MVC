@@ -21,15 +21,24 @@ namespace IntercambioProyect.Controllers
 
             return View();
         }
-        public ActionResult yea()
+
+        public ActionResult HolaSoyRamiro()
         {
             ViewBag.Message = "Your app description page.";
 
             return View();
         }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult EL_fiestero()
+        {
+            ViewBag.Message = "Hola_Minombre_es_PEdro_y _soy_un_fiestero.";
 
             return View();
         }
