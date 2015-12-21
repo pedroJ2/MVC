@@ -1,33 +1,49 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+
 <div class="col-md-12">
     <div id="renderBody"  class="col-md-5 col-md-offset-1">
         <h2><span class="label label-default">informations</span></h2>
-        <form id="form" class="form-horizontal" autocomplete="on" action="" method="POST" accept-charset="UTF-8">
+            <section id="newItem" class="form-horizontal">
             <fieldset>
-                <div class="form-group">
+                <div class="form-group has-feedback espect" data-bind="validationElement: name, css: { 'has-success': name.isValid()}">
                     <label for="user-input" class="col-sm-3 control-label" accesskey="n">Complete name</label>
                     <div class="col-sm-9">
-                        <input type="text" id="user-input" class="form-control" name="nombre" placeholder="Enter your user"
-                                autofocus spellcheck="false" required />
+                        <input type="text" id="user-input" class="form-control" name="nombre" placeholder="Enter your complete name"
+                               autofocus spellcheck="false" data-bind='value: name, valueUpdate: "afterkeydown"' required />
+                        <!-- ko if: !name.isValid() -->
+                        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                        <span class="sr-only">(error)</span>
+                        <!-- /ko -->
+                        <!-- ko if: name.isValid() -->
+                        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                        <span class="sr-only">(success)</span>
+                        <!-- /ko -->
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="password-input" class="col-sm-3 control-label" accesskey="p">Email</label>
+                <div class="form-group has-feedback espect" data-bind="validationElement: email, css: { 'has-success': email.isValid()}">
+                    <label for="email-input" class="col-sm-3 control-label" accesskey="e">Email</label>
                     <div class="col-sm-9">
-                        <input type="password" id="password-input" class="form-control" name="password" placeholder="*****" required />
+                        <input type="email" id="email-input" class="form-control" name="email" placeholder="Enter your email"
+                               data-bind='value: email, valueUpdate: "afterkeydown"' required />
+                        <!-- ko if: !email.isValid() -->
+                        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                        <span class="sr-only">(error)</span>
+                        <!-- /ko -->
+                        <!-- ko if: email.isValid() -->
+                        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                        <span class="sr-only">(success)</span>
+                        <!-- /ko -->
                     </div>
                 </div>
             </fieldset>
             <div class="form-group">
                 <div class="col-md-offset-8 col-sm-offset-8 col-sm-4">
-                    <button type="submit" class="btn btn-primary btn-default btn-block">Add
-                        <span data-bind="SetCSSandPopover: 'SS'"></span>
-                    </button>
+                    <button type="submit" class="btn btn-primary btn-default btn-block" data-bind="click: addPerson">Add</button>
                 </div>
             </div>
-        </form>
+        </section>
         <div class="bs-example">
             <table class="table table-hover">
                 <thead>
@@ -35,34 +51,44 @@
                         <th>Row</th>
                         <th>Complete Name</th>
                         <th>Email</th>
+                        <th>Edit</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody data-bind="foreach: persons">
                     <tr>
-                        <td>1</td>
-                        <td>John</td>
-                        <td>johncarter@mail.com</td>
-                        <td class="glyphicon glyphicon-remove display"></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Peter</td>
-                        <td>peterparker@mail.com</td>
-                        <td class="glyphicon glyphicon-remove display"></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>John</td>
-                        <td>johnrambo@mail.com</td>
-                        <td class="glyphicon glyphicon-remove display"></td>
+                        <td data-bind="text: id"></td>
+                        <td data-bind="text: name"></td>
+                        <td data-bind="text: email"></td>
+                        <td><a href="#" data-bind="popUp: {content: '#person-template', id: id}">Edit</a></td>
+                        <td data-bind="click: $root.removePerson" class="glyphicon glyphicon-remove display"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <script type="text/html" id="person-template">
+            <table border="1" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>First Name</td>
+                    <td><input type="text" data-bind="value: firstName, valueUpdate:'keyup'" /></td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td><input type="text" data-bind="value: lastName, valueUpdate:'keyup'" /></td>
+                </tr>
+                <tr>
+                    <td>Email Address</td>
+                    <td><input type="text" data-bind="value: email, valueUpdate:'keyup'" /></td>
+                </tr>
+            </table>
+            <br>
+            <div class="row-fluid">
+                <center>
+                    <div class="span3 offset1">
+                        <button class="btn btn-small btn-danger" data-bind="click:$root.closePopover">Close</button>
+                    </div>
+                </center>
+            </div>
+        </script>
     </div>
 </div>
-
-
-
-       

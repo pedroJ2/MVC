@@ -25,13 +25,18 @@ footer span {
     display:table-cell !important;
 }
 .form-control{
-  width: 95% !important;
+  width: 98% !important;
   margin: 0 auto !important;
   -webkit-transition: width .4s ease-in-out !important;
   -moz-transition: width .4s ease-in-out !important;
   -o-transition: width .4s ease-in-out !important;
   transition: width .4s ease-in-out !important;
 }
+
+.espect {
+   height:55px !important;
+}
+
 @media(min-width:768px){
   .form-control:hover{
     width: 100% !important;

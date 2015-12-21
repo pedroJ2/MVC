@@ -16,7 +16,8 @@ namespace IntercambioProyect
 
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
                         "~/Scripts/knockout/*.js",
-                        "~/Scripts/VM_Intercambio.js"));
+                        "~/Scripts/jqueryValidate/*.js",
+                        "~/Scripts/*.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jqueryUnobtrusive/jquery.unobtrusive*",

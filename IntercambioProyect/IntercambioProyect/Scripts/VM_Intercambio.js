@@ -1,49 +1,77 @@
-﻿ko.bindingHandlers.SetCSSandPopover = {
-    update: function (element, valueAccessor, allBindingsAccessor) {
-        var cssClass = ko.utils.unwrapObservable(valueAccessor);
-        var obs = ko.utils.unwrapObservable(allBindingsAccessor()).value;
+﻿
+var person = function (id, name, email) {
+    var self = this;
+    self.id = ko.observable(id);
+    self.name = ko.observable(name);
+    self.email = ko.observable(email);
+}
 
-        if (true) {
-            $(element).addClass(cssClass);
-            $(element).popover({
-                trigger: "hover",
-                html: true,
-                content: function () {
-                    return $(element).next()[0].title;
-                },
-                container: "body",
-                placement: "top",
-                template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
-            });
-        }
-        else {
-            $(element).removeClass(cssClass);
-            $(element).popover("destroy");
+var personViewModel = function () {
+    var self = this;
+    self.name = ko.observable().extend({
+        required: true
+    });
+    self.email = ko.observable().extend({
+        required: true,
+        email: true
+    });
+    // Editable data
+    self.persons = ko.observableArray();
+
+    // Operations
+    self.addPerson = function () {
+        if (self.name.isValid() && self.email.isValid()) {
+            var id = self.persons().length + 1;
+            self.persons.push(new person(id,self.name(), self.email()));
+            self.name('');
+            self.email('');
         }
     }
-};
-ko.bindingHandlers.SetParentPopover = {
-    update: function (element, valueAccessor, allBindingsAccessor) {
-        var cssClass = ko.utils.unwrapObservable(valueAccessor);
-        var obs = ko.utils.unwrapObservable(allBindingsAccessor()).value;
 
-        var decorateElement = obs.isModified() && !obs.isValid();
-        if (decorateElement) {
-            $(element).parent().addClass(cssClass);
-            $(element).parent().popover({
-                trigger: "hover",
-                html: true,
-                content: function () {
-                    return $(element).next()[0].title;
-                },
-                container: "body",
-                placement: "top",
-                template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
-            });
-        }
-        else {
-            $(element).parent().removeClass(cssClass);
-            $(element).parent().popover("destroy");
-        }
+    //RemoveItem
+    self.removePerson = function (person) {
+        self.persons.remove(person);
     }
-};
+
+    name: ko.observable().extend({
+        required: true
+    });
+    email: ko.observable().extend({
+        required: true,
+        email: true
+    });
+
+    self.closePopover = function (person) {
+        $('#popover' + person.id + "_click").popover("hide");
+    };
+
+}
+
+ko.applyBindings(new personViewModel());
+
+ko.bindingHandlers.popUp = {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var attribute = ko.utils.unwrapObservable(valueAccessor());
+        var templateContent = attribute.content;
+        var popOverTemplate = "<div class='popOverClass' id='" + attribute.id + "-popover'>" + $(templateContent).html() + "</div>";
+        alert(element);
+        $('#nno').popover({
+            placement: 'right',
+            content: popOverTemplate,
+            html: true,
+            trigger: 'manual'
+        });
+        $(element).attr('id', "popover" + attribute.id + "_click");
+        $(element).click(function () {
+            $(".popOverClass").popover("hide");
+            $(this).popover('toggle');
+            var thePopover = document.getElementById(attribute.id + "-popover");
+            childBindingContext = bindingContext.createChildContext(viewModel);
+            ko.applyBindingsToDescendants(childBindingContext, thePopover);
+        })
+    }
+}
+
+
+
+
