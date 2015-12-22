@@ -4,47 +4,68 @@
 
 <div class="col-md-12">
     <div id="renderBody"  class="col-md-5 col-md-offset-1">
-        <h2><span class="label label-default">informations</span></h2>
-            <section id="newItem" class="form-horizontal">
-            <fieldset>
-                <div class="form-group has-feedback espect" data-bind="validationElement: name, css: { 'has-success': name.isValid()}">
-                    <label for="user-input" class="col-sm-3 control-label" accesskey="n">Complete name</label>
-                    <div class="col-sm-9">
-                        <input type="text" id="user-input" class="form-control" name="nombre" placeholder="Enter your complete name"
-                               autofocus spellcheck="false" data-bind='value: name, valueUpdate: "afterkeydown"' required />
-                        <!-- ko if: !name.isValid() -->
-                        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                        <span class="sr-only">(error)</span>
-                        <!-- /ko -->
-                        <!-- ko if: name.isValid() -->
-                        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                        <span class="sr-only">(success)</span>
-                        <!-- /ko -->
-                    </div>
-                </div>
-                <div class="form-group has-feedback espect" data-bind="validationElement: email, css: { 'has-success': email.isValid()}">
-                    <label for="email-input" class="col-sm-3 control-label" accesskey="e">Email</label>
-                    <div class="col-sm-9">
-                        <input type="email" id="email-input" class="form-control" name="email" placeholder="Enter your email"
-                               data-bind='value: email, valueUpdate: "afterkeydown"' required />
-                        <!-- ko if: !email.isValid() -->
-                        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                        <span class="sr-only">(error)</span>
-                        <!-- /ko -->
-                        <!-- ko if: email.isValid() -->
-                        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                        <span class="sr-only">(success)</span>
-                        <!-- /ko -->
-                    </div>
-                </div>
-            </fieldset>
-            <div class="form-group">
-                <div class="col-md-offset-8 col-sm-offset-8 col-sm-4">
-                    <button type="submit" class="btn btn-primary btn-default btn-block" data-bind="click: addPerson">Add</button>
+        <div class="row">
+            <div class="col-md-6">
+                <h2><span class="label label-default">informations</span></h2>
+            </div>
+            <div class="col-md-6">
+                <div id="alertPersona" class="alert alert-danger">Person is repeat</div>
+            </div>
+        </div>
+        <section id="newItem" class="form-horizontal">
+        <fieldset>
+            <div class="form-group has-feedback espect" data-bind="validationElement: name, css: { 'has-success': name.isValid()}">
+                <label for="user-input" class="col-sm-3 control-label" accesskey="n">Complete name</label>
+                <div class="col-sm-9">
+                    <input type="text" id="user-input" class="form-control form-control-efect" name="nombre" placeholder="Enter your complete name"
+                            autofocus spellcheck="false" data-bind='value: name, valueUpdate: "afterkeydown"' required />
+                    <!-- ko if: !name.isValid() -->
+                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                    <span class="sr-only">(error)</span>
+                    <!-- /ko -->
+                    <!-- ko if: name.isValid() -->
+                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                    <span class="sr-only">(success)</span>
+                    <!-- /ko -->
                 </div>
             </div>
+            <div class="form-group has-feedback espect" data-bind="validationElement: email, css: { 'has-success': email.isValid()}">
+                <label for="email-input" class="col-sm-3 control-label" accesskey="e">Email</label>
+                <div class="col-sm-9">
+                    <input type="email" id="email-input" class="form-control form-control-efect" name="email" placeholder="Enter your email"
+                            data-bind='value: email, valueUpdate: "afterkeydown"' required />
+                    <!-- ko if: !email.isValid() -->
+                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                    <span class="sr-only">(error)</span>
+                    <!-- /ko -->
+                    <!-- ko if: email.isValid() -->
+                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                    <span class="sr-only">(success)</span>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <div class="col-md-offset-8 col-sm-offset-8 col-sm-4">
+                <button type="submit" class="btn btn-primary btn-default btn-block" data-bind="click: addPerson">Add</button>
+            </div>
+        </div>
         </section>
+        <h2><span class="label label-default">Persons</span></h2>
         <div class="bs-example">
+            <!-- Input Group -->
+            <div class="col-sm-offset-4 col-lg-8">
+                <div class="form-group">
+                    <label class="control-label" for="inputGroup">Search person</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                                placeholder="Search" id="inputGroup" data-bind="value: filter, valueUpdate: 'afterkeydown'" />
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -55,40 +76,56 @@
                         <th>Delete</th>
                     </tr>
                 </thead>
-                <tbody data-bind="foreach: persons">
+                <tbody data-bind="foreach: filteredItems">
                     <tr>
                         <td data-bind="text: id"></td>
                         <td data-bind="text: name"></td>
                         <td data-bind="text: email"></td>
-                        <td><a href="#" data-bind="popUp: {content: '#person-template', id: id}">Edit</a></td>
-                        <td data-bind="click: $root.removePerson" class="glyphicon glyphicon-remove display"></td>
+                        <td><a href="#" class="glyphicon glyphicon-pencil display" data-bind="popUp: {content: '#person-template', id: id}"></a></td>
+                        <td data-bind="click: $root.removePerson" class="glyphicon glyphicon-remove display red"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <script type="text/html" id="person-template">
-            <table border="1" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td>First Name</td>
-                    <td><input type="text" data-bind="value: firstName, valueUpdate:'keyup'" /></td>
-                </tr>
-                <tr>
-                    <td>Last Name</td>
-                    <td><input type="text" data-bind="value: lastName, valueUpdate:'keyup'" /></td>
-                </tr>
-                <tr>
-                    <td>Email Address</td>
-                    <td><input type="text" data-bind="value: email, valueUpdate:'keyup'" /></td>
-                </tr>
-            </table>
-            <br>
-            <div class="row-fluid">
-                <center>
-                    <div class="span3 offset1">
-                        <button class="btn btn-small btn-danger" data-bind="click:$root.closePopover">Close</button>
-                    </div>
-                </center>
+            <div class="form-group has-feedback espect-2" data-bind="validationElement: name, css: { 'has-success': name.isValid()}">
+                <label for="user-input" class="control-label" accesskey="n">Complete name</label>
+                <input type="text" id="user-input" class="form-control" name="nombre" placeholder="Enter your complete name"
+                        autofocus spellcheck="false" data-bind='value: name, valueUpdate: "afterkeydown"' required />
+                <!-- ko if: !name.isValid() -->
+                <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                <span class="sr-only">(error)</span>
+                <!-- /ko -->
+                <!-- ko if: name.isValid() -->
+                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                <span class="sr-only">(success)</span>
+                <!-- /ko -->
+            </div>
+            <div class="form-group has-feedback espect-2" data-bind="validationElement: email, css: { 'has-success': email.isValid()}">
+                <label for="email-input" class="control-label" accesskey="e">Email</label>
+                <input type="email" id="email-input" class="form-control" name="email" placeholder="Enter your email"
+                        data-bind='value: email, valueUpdate: "afterkeydown"' required />
+                <!-- ko if: !email.isValid() -->
+                <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                <span class="sr-only">(error)</span>
+                <!-- /ko -->
+                <!-- ko if: email.isValid() -->
+                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                <span class="sr-only">(success)</span>
+                <!-- /ko -->
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div id="alertPersona-pop" class="alert alert-danger">Person is repeat</div>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-primary" data-bind="click:$root.validatePopClose, enable:name.isValid() && email.isValid()">Close</button>
+                </div>
             </div>
         </script>
     </div>
 </div>
+
+
+
+

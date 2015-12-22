@@ -257,7 +257,6 @@
     <Content Include="Images\navidad\merry.jpg" />
     <Content Include="Scripts\bootstrap\bootstrap.js" />
     <Content Include="Scripts\bootstrap\bootstrap.min.js" />
-    <Content Include="Scripts\jquery\jquery-1.8.2.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -266,17 +265,15 @@
     <Content Include="Content\bootstrap\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap\bootstrap.css.map" />
+    <None Include="Scripts\jquery\jquery-2.1.4-vsdoc.js" />
+    <Content Include="Scripts\jquery\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jqueryValidate\validation.config.js" />
-    <None Include="Scripts\jquery\jquery-1.9.1.intellisense.js" />
-    <Content Include="Scripts\jquery\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery\jquery-1.9.1.min.js" />
-    <Content Include="Scripts\jquery\jquery-1.9.1.min.map" />
-    <Content Include="Scripts\jquery\jquery-ui-1.8.24.js" />
-    <Content Include="Scripts\jquery\jquery-ui-1.8.24.min.js" />
     <Content Include="Scripts\jqueryUnobtrusive\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jqueryUnobtrusive\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jqueryValidate\knockout.validation.js" />
     <Content Include="Scripts\jqueryValidate\knockout.validation.min.js" />
+    <Content Include="Scripts\JQ_Intercambio.js" />
     <Content Include="Scripts\knockout\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -307,6 +304,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\jqueryValidate\knockout.validation.min.js.map" />
+    <Content Include="Scripts\jquery\jquery-2.1.4.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
