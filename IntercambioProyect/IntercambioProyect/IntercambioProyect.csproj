@@ -253,6 +253,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\navidad\gift1.jpg" />
+    <Content Include="Images\navidad\gift2.jpg" />
     <Content Include="Images\navidad\Merry-Christmas.jpg" />
     <Content Include="Images\navidad\merry.jpg" />
     <Content Include="Scripts\bootstrap\bootstrap.js" />
