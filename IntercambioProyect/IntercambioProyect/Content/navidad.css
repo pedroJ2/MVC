@@ -1,0 +1,47 @@
+﻿body {
+    width:100%;
+    height:100%;
+    background: url("../Images/navidad/merry.jpg");
+    background-size: 100% 1000px;
+    background-repeat: no-repeat;
+    margin: 0;
+    font-family: "";
+    padding: 0;
+}
+
+footer span {
+    color:white;
+    font-size:1.5em;
+    font-weight:bold;
+}
+
+.glyphicon-remove {
+    display: inline-grid!important;
+    top:0px !important;
+    cursor:pointer;
+}
+
+.display {
+    display:table-cell !important;
+}
+.form-control{
+  width: 98% !important;
+  margin: 0 auto !important;
+  -webkit-transition: width .4s ease-in-out !important;
+  -moz-transition: width .4s ease-in-out !important;
+  -o-transition: width .4s ease-in-out !important;
+  transition: width .4s ease-in-out !important;
+}
+
+.espect {
+   height:55px !important;
+}
+
+@media(min-width:768px){
+  .form-control:hover{
+    width: 100% !important;
+  }
+  .form-control:focus{
+    width: 100% !important;
+  }
+}
