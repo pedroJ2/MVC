@@ -181,17 +181,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\Date.cs" />
-    <Compile Include="Models\delegates.cs" />
+    <Compile Include="Models\Asignacion.cs" />
+    <Compile Include="Models\Intercambio.cs" />
     <Compile Include="Models\Persona.cs" />
-    <Compile Include="Models\Program.cs" />
+    <Compile Include="Models\PersonaComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

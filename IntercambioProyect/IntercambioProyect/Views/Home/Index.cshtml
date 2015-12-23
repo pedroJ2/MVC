@@ -67,10 +67,9 @@
                     </div>
                 </div>
             </div>
-            <table class="table table-hover">
+            <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Row</th>
                         <th>Complete Name</th>
                         <th>Email</th>
                         <th>Edit</th>
@@ -79,14 +78,17 @@
                 </thead>
                 <tbody data-bind="foreach: filteredItems">
                     <tr>
-                        <td data-bind="text: id"></td>
-                        <td data-bind="text: name"></td>
-                        <td data-bind="text: email"></td>
-                        <td><a href="#" class="glyphicon glyphicon-pencil display" data-bind="popUp: {content: '#person-template', id: id}"></a></td>
-                        <td data-bind="click: $root.removePerson" class="glyphicon glyphicon-remove display red"></td>
+                        <td data-bind="text: name" class="col-sm-4"></td>
+                        <td data-bind="text: email" class="col-sm-4"></td>
+                        <td><a href="#" class="glyphicon glyphicon-pencil display col-sm-4" data-bind="popUp: {content: '#person-template', id: id}"></a></td>
+                        <td data-bind="click: $root.removePerson" class="glyphicon glyphicon-remove display red col-sm-4"></td>
                     </tr>
                 </tbody>
             </table>
+            <div class="col-md-offset-3">
+                <button type="button" class="btn btn-primary col-md-5 btn-default " data-bind="click: removeAll, enable: $root.persons().length > 1 ">Clean</button>
+                <button type="button" class="btn btn-primary col-md-6 col-sm-offset-1 btn-default " data-bind="click: sendModel, enable: $root.persons().length > 1 ">GO!</button>
+            </div>
         </div>
         <script type="text/html" id="person-template">
             <div class="form-group has-feedback espect-2" data-bind="validationElement: name, css: { 'has-success': name.isValid()}">
@@ -150,43 +152,24 @@
                 <h4>Correos</h4>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-2 col-xs-3 text-center padding-top">
-                <p>Ejemplo1ssss</p>
+        <div data-bind="foreach: personsResult">
+            <div class="row">
+                <div class="col-md-2 col-xs-3 text-center padding-top">
+                    <p data-bind="text: PersonaEntrega.name"></p>
+                </div>
+                <div class="col-md-3 col-xs-2 text-center padding-top">
+                    <p data-bind="text: PersonaEntrega.email"></p>
+                </div>
+                <div class="col-md-2 col-xs-2 text-center">
+                    <img src="Images/navidad/gift1.jpg" class="img-responsive center " alt="Responsive image">
+                </div>
+                <div class="col-md-2 col-xs-3 text-center padding-top">
+                    <p data-bind="text: PersonaRecibe.name"></p>
+                </div>
+                <div class="col-md-3 col-xs-2 text-center padding-top">
+                    <p data-bind="text: PersonaRecibe.email"></p>
+                </div>
             </div>
-            <div class="col-md-3 col-xs-2 text-center padding-top">
-                <p>ejemplo@@gmail.com</p>
-            </div>
-            <div class="col-md-2 col-xs-2 text-center">
-                <img src="Images/navidad/gift1.jpg" class="img-responsive center " alt="Responsive image">
-            </div>
-            <div class="col-md-2 col-xs-3 text-center padding-top">
-                <p>Ejemplo1.1</p>
-            </div>
-            <div class="col-md-3 col-xs-2 text-center padding-top">
-                <p>ejemplo1.1@@hotmail.com</p>
-            </div>
-        </div> 
-        <div class="row">
-            <div class="col-md-2 col-xs-3 text-center padding-top">
-                <p>Ejemplo1</p>
-            </div>
-            <div class="col-md-3 col-xs-2 text-center padding-top">
-                <p>ejemplo@@gmail.com</p>
-            </div>
-            <div class="col-md-2 col-xs-2">
-                <img src="Images/navidad/gift2.jpg" class="img-responsive center " alt="Responsive image">
-            </div>
-            <div class="col-md-2 col-xs-3 text-center padding-top">
-                <p>Ejemplo1.1</p>
-            </div>
-            <div class="col-md-3 col-xs-2 text-center padding-top">
-                <p>ejemplo1.1@@hotmail.com</p>
-            </div>
-        </div>                    
+        </div>                   
     </div>
 </div>
-
-
-
-

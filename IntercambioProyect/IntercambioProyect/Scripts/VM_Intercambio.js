@@ -42,6 +42,7 @@ var personViewModel = function () {
     });
     // Editable data
     self.persons = ko.observableArray();
+    self.personsResult = ko.observableArray();
     // Operations
     self.addPerson = function () {
         if (self.validate()) {
@@ -56,15 +57,13 @@ var personViewModel = function () {
             });
         }
     }
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 2251947d295fbd0318dab8adbe0d567c5963cf9b
     //RemoveItem
     self.removePerson = function (person) {
         self.persons.remove(person);
+    }
+    self.removeAll = function () {
+        self.persons.removeAll();
+        self.personsResult.removeAll();
     }
     self.filter = ko.observable("");
     self.filteredItems = ko.computed(function () {
@@ -107,6 +106,25 @@ var personViewModel = function () {
             });
         }
     };
+    self.sendModel = function () {
+        $.ajax({
+            url: "/Home/sendModel/",
+            type: "POST",
+            datatype: "json",
+            contentType: "application/json; charset=utf-8",
+            data: ko.toJSON(self.persons),
+            async: false,
+            success: function (data) {
+                self.personsResult(data);
+            },
+            error: function () {
+
+            }
+        });
+    };
+    //$('#btns').click(function () {
+    //    alert(JSON.stringify(ko.toJS(self.persons()), null, 2));
+    //});
 }
 
 ko.bindingHandlers.popUp = {
@@ -131,5 +149,4 @@ ko.bindingHandlers.popUp = {
         })
     }
 }
-
 ko.applyBindings(new personViewModel());

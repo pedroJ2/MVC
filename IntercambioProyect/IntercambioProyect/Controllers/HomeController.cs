@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IntercambioProyect.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,27 +23,21 @@ namespace IntercambioProyect.Controllers
             return View();
         }
 
-        public ActionResult HolaSoyRamiro()
-        {
-            ViewBag.Message = "Your app description page.";
-
-            return View();
-        }
-
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
         }
-
-
-
-        public ActionResult EL_fiestero()
+        
+        [HttpPost]
+        public ActionResult sendModel(List<Persona> persons)
         {
-            ViewBag.Message = "Hola_Minombre_es_PEdro_y _soy_un_fiestero.";
+            Intercambio inter = new Intercambio();
+            inter.setPersons(persons);
+            List<Asignacion> result = inter.OrganizarIntercambio();
 
-            return View();
+            return Json(result, JsonRequestBehavior.AllowGet); 
         }
     }
 }

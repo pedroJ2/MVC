@@ -9,9 +9,20 @@
     padding: 0;
 }
 header {
-    padding:0% 5%;
     margin-bottom:20px;
     background-color: rgba(238,238,238,.9);
+}
+tr {
+width: 100%;
+
+}
+table{
+ height:300px; 
+}
+tbody{
+  overflow-y: scroll;
+  height: 200px;
+  width: 100%;
 }
 footer span {
     color:white;
