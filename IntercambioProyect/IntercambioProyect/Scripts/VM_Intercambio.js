@@ -31,7 +31,7 @@ var personViewModel = function () {
         }
     });
     self.email = ko.observable().extend({
-        required:{
+        required: {
             message: "Enter a email",
             params: true
         },
@@ -64,6 +64,7 @@ var personViewModel = function () {
     self.removeAll = function () {
         self.persons.removeAll();
         self.personsResult.removeAll();
+        id = 1;
     }
     self.filter = ko.observable("");
     self.filteredItems = ko.computed(function () {
@@ -149,4 +150,12 @@ ko.bindingHandlers.popUp = {
         })
     }
 }
+ko.bindingHandlers.fadeInText = {
+    'update': function (element, valueAccessor) {
+        $(element).hide();
+        ko.bindingHandlers.text.update(element, valueAccessor);
+        $(element).fadeIn('slow');
+    }
+};
+
 ko.applyBindings(new personViewModel());
